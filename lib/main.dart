@@ -28,25 +28,49 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
+  String text = '';
+
   void _login(BuildContext context) {
     String username = _usernameController.text;
     String password = _passwordController.text;
 
     // Perform your login logic here
     // For demonstration purposes, let's just check if both fields are not empty
-    if (username.isNotEmpty && password.isNotEmpty) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => HomePage(username)),
-      );
+    // if (username.isNotEmpty && password.isNotEmpty) {
+    //   Navigator.push(
+    //     context,
+    //     MaterialPageRoute(builder: (context) => HomePage(username)),
+    //   );
+    // } else {
+    //   // Show an error dialog if either field is empty
+    //   showDialog(
+    //     context: context,
+    //     builder: (BuildContext context) {
+    //       return AlertDialog(
+    //         title: Text('Error'),
+    //         content: Text('Please enter both username and password.'),
+    //         actions: [
+    //           TextButton(
+    //             onPressed: () => Navigator.of(context).pop(),
+    //             child: Text('OK'),
+    //           ),
+    //         ],
+    //       );
+    //     },
+    //   );
+    // }
+
+    if (username == "123" && password == "123") {
+      text = 'Login Sukses';
+      SnackBar snackBar = SnackBar(content: Text(text));
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
     } else {
-      // Show an error dialog if either field is empty
       showDialog(
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
             title: Text('Error'),
-            content: Text('Please enter both username and password.'),
+            content: Text('Login Gagal.'),
             actions: [
               TextButton(
                 onPressed: () => Navigator.of(context).pop(),
@@ -128,7 +152,7 @@ class HomePage extends StatelessWidget {
         title: Text('Welcome, $username'),
       ),
       body: Center(
-        child: Text('Welcome to the Home Page, $username!'),
+        child: Text('Welcome to the Home Page, $username! Login Sukses'),
       ),
     );
   }
