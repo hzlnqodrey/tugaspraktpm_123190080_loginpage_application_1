@@ -90,7 +90,8 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return SafeArea(
+        child: Scaffold(
       appBar: AppBar(
         title: Text('Login'),
       ),
@@ -103,6 +104,11 @@ class _LoginPageState extends State<LoginPage> {
               controller: _usernameController,
               decoration: InputDecoration(
                 labelText: 'Username',
+                contentPadding: const EdgeInsets.all(8.0),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.0),
+                  borderSide: BorderSide(color: Colors.blue),
+                ),
               ),
             ),
             SizedBox(height: 20.0),
@@ -111,6 +117,11 @@ class _LoginPageState extends State<LoginPage> {
               obscureText: true,
               decoration: InputDecoration(
                 labelText: 'Password',
+                contentPadding: const EdgeInsets.all(8.0),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.0),
+                  borderSide: BorderSide(color: Colors.blue),
+                ),
               ),
             ),
             SizedBox(height: 20.0),
@@ -132,7 +143,7 @@ class _LoginPageState extends State<LoginPage> {
           ],
         ),
       ),
-    );
+    ));
   }
 }
 
