@@ -29,6 +29,7 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _passwordController = TextEditingController();
 
   String text = '';
+  bool isLogin = false;
 
   void _login(BuildContext context) {
     String username = _usernameController.text;
@@ -61,26 +62,21 @@ class _LoginPageState extends State<LoginPage> {
     // }
 
     if (username == "123" && password == "123") {
-      text = 'Login Sukses';
-      SnackBar snackBar = SnackBar(content: Text(text));
-      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      setState(() {
+        text = 'Login Sukses';
+        isLogin = true;
+      });
     } else {
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text('Error'),
-            content: Text('Login Gagal.'),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.of(context).pop(),
-                child: Text('OK'),
-              ),
-            ],
-          );
-        },
-      );
+      setState(() {
+        text = 'Login Gagal';
+        isLogin = false;
+      });
     }
+    SnackBar snackBar = SnackBar(
+      content: Text(text),
+      backgroundColor: isLogin ? Colors.green : Colors.red,
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
   void _forgotPassword() async {
