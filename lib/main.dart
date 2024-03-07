@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tugaspraktpm_123190080_loginpage_application_1/views/SecondScreen.dart';
 import 'package:url_launcher/url_launcher.dart' as url_launcher;
 
 void main() {
@@ -29,7 +30,7 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _passwordController = TextEditingController();
 
   String text = '';
-  bool isLogin = false;
+  bool isLogin = true;
 
   void _login(BuildContext context) {
     String username = _usernameController.text;
@@ -66,6 +67,12 @@ class _LoginPageState extends State<LoginPage> {
         text = 'Login Sukses';
         isLogin = true;
       });
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) {
+          return SecondScreen();
+        }),
+      );
     } else {
       setState(() {
         text = 'Login Gagal';
@@ -109,6 +116,11 @@ class _LoginPageState extends State<LoginPage> {
                   borderRadius: BorderRadius.circular(5.0),
                   borderSide: BorderSide(color: Colors.blue),
                 ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.0),
+                  borderSide:
+                      BorderSide(color: (isLogin) ? Colors.green : Colors.red),
+                ),
               ),
             ),
             SizedBox(height: 20.0),
@@ -121,6 +133,11 @@ class _LoginPageState extends State<LoginPage> {
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(5.0),
                   borderSide: BorderSide(color: Colors.blue),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.0),
+                  borderSide:
+                      BorderSide(color: (isLogin) ? Colors.green : Colors.red),
                 ),
               ),
             ),
